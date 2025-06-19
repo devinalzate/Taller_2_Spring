@@ -15,9 +15,6 @@ public class EmpleadoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_empleado;
 
-    @OneToOne(mappedBy = "fk_id_empleado")
-    private UserEntity usuario;
-
     private String correo;
     private String telefono;
     private String primer_nombre;

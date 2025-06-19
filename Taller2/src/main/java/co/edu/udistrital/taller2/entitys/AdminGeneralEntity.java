@@ -15,8 +15,6 @@ public class AdminGeneralEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_administrador_general;
-    @OneToOne(mappedBy = "fk_id_administrador_general")
-    private UserEntity usuario;
 
     private String correo;
     private String telefono;
