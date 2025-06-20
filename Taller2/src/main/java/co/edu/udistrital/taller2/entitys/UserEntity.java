@@ -21,13 +21,13 @@ public class UserEntity {
     private String contrasena;
     private String rol;
     private Long fk_id_cliente;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_id_empleado")
     private EmpleadoEntity fk_id_empleado;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_id_administrador_general")
     private AdminGeneralEntity fk_id_administrador_general;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_id_administrador")
     private AdminEntity fk_id_administrador;
 }

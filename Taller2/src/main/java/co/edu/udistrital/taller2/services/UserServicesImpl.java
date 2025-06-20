@@ -1,9 +1,17 @@
 package co.edu.udistrital.taller2.services;
 
 import co.edu.udistrital.taller2.Models.UserModel;
+import co.edu.udistrital.taller2.dtos.AdminDTO;
+import co.edu.udistrital.taller2.dtos.EmpleadoDTO;
 import co.edu.udistrital.taller2.dtos.UserDTO;
+import co.edu.udistrital.taller2.entitys.AdminEntity;
+import co.edu.udistrital.taller2.entitys.EmpleadoEntity;
 import co.edu.udistrital.taller2.entitys.UserEntity;
+import co.edu.udistrital.taller2.repos.AdminRepository;
+import co.edu.udistrital.taller2.repos.EmpleadoRepository;
 import co.edu.udistrital.taller2.repos.UserRepository;
+import co.edu.udistrital.taller2.utils.AdminMapper;
+import co.edu.udistrital.taller2.utils.EmpleadoMapper;
 import co.edu.udistrital.taller2.utils.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +25,43 @@ import java.util.stream.Collectors;
 public class UserServicesImpl implements BaseService<UserEntity,UserModel, UserDTO> {
 
     private final UserRepository userRepository;
+    private final EmpleadoRepository empleadoRepository;
+    private final EmpleadoMapper empleadoMapper;
+    private final AdminRepository adminRepository;
+    private final AdminMapper adminMapper;
 
     @Override
     public UserEntity save(UserModel userModel) {
-        UserEntity created = UserMapper.toEntityFromModel(userModel);
-        userRepository.save(created);
-        return created;
+
+        UserEntity userEntity = UserMapper.toEntityFromModel(userModel);
+        if (userModel.getFk_id_empleado() != null) {
+            EmpleadoEntity empleado = empleadoRepository.findById(userModel.getFk_id_empleado())
+                    .orElseThrow(() -> new RuntimeException("Empleado no encontrado con ID: " + userModel.getFk_id_empleado()));
+            userEntity.setFk_id_empleado(empleado);
+        }
+        if (userModel.getFk_id_administrador() != null ){
+            AdminEntity admin = adminRepository.findById(userModel.getFk_id_administrador()).orElseThrow(()-> new RuntimeException("Empleado no encontrado con ID: " + userModel.getFk_id_administrador()));
+            userEntity.setFk_id_administrador(admin);
+        }
+        return userRepository.save(userEntity);
+    }
+
+    public EmpleadoDTO getFkEmployeeById(Long id){
+        UserEntity userEntity = userRepository.findById(id).orElse(null);
+        EmpleadoEntity employeeEntity = userEntity.getFk_id_empleado();
+        if(employeeEntity != null){
+            return empleadoMapper.toDTO(employeeEntity);
+        }
+        return null;
+    }
+
+    public AdminDTO getFkAdminById(Long id){
+        UserEntity userEntity = userRepository.findById(id).orElse(null);
+        AdminEntity adminEntity = userEntity.getFk_id_administrador();
+        if(adminEntity != null){
+            return adminMapper.toDTO(adminEntity);
+        }
+        return null;
     }
 
     @Override

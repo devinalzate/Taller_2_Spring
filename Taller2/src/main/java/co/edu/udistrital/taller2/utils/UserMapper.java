@@ -3,9 +3,6 @@ package co.edu.udistrital.taller2.utils;
 import co.edu.udistrital.taller2.Models.UserModel;
 import co.edu.udistrital.taller2.dtos.UserDTO;
 import co.edu.udistrital.taller2.entitys.UserEntity;
-import org.mapstruct.Mapper;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
 public class UserMapper {
     private UserMapper(){}

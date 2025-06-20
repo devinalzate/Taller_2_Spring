@@ -1,4 +1,4 @@
-package co.edu.udistrital.taller2.dtos;
+package co.edu.udistrital.taller2.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +9,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AdminDTO {
-    private Long id_administrador;
+public class EmpleadoModel {
     private String correo;
-    private String telefono;
+    private String telofono;
     private String primer_nombre;
     private String segundo_nombre;
     private String primer_apellido;
