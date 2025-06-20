@@ -1,23 +1,16 @@
-package co.edu.udistrital.taller2.entitys;
+package co.edu.udistrital.taller2.Models;
 
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-@Entity
-@Table(name = "administrador_general")
+@Data
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Data
 @Builder
-public class AdminGeneralEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_administrador_general;
-
+public class AdminGeneralModel {
     private String correo;
     private String telefono;
     private String primer_nombre;

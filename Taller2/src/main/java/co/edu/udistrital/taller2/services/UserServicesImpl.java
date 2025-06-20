@@ -2,14 +2,18 @@ package co.edu.udistrital.taller2.services;
 
 import co.edu.udistrital.taller2.Models.UserModel;
 import co.edu.udistrital.taller2.dtos.AdminDTO;
+import co.edu.udistrital.taller2.dtos.AdminGeneralDTO;
 import co.edu.udistrital.taller2.dtos.EmpleadoDTO;
 import co.edu.udistrital.taller2.dtos.UserDTO;
 import co.edu.udistrital.taller2.entitys.AdminEntity;
+import co.edu.udistrital.taller2.entitys.AdminGeneralEntity;
 import co.edu.udistrital.taller2.entitys.EmpleadoEntity;
 import co.edu.udistrital.taller2.entitys.UserEntity;
+import co.edu.udistrital.taller2.repos.AdminGeneralRepository;
 import co.edu.udistrital.taller2.repos.AdminRepository;
 import co.edu.udistrital.taller2.repos.EmpleadoRepository;
 import co.edu.udistrital.taller2.repos.UserRepository;
+import co.edu.udistrital.taller2.utils.AdminGeneralMapper;
 import co.edu.udistrital.taller2.utils.AdminMapper;
 import co.edu.udistrital.taller2.utils.EmpleadoMapper;
 import co.edu.udistrital.taller2.utils.UserMapper;
@@ -29,6 +33,8 @@ public class UserServicesImpl implements BaseService<UserEntity,UserModel, UserD
     private final EmpleadoMapper empleadoMapper;
     private final AdminRepository adminRepository;
     private final AdminMapper adminMapper;
+    private final AdminGeneralRepository adminGeneralRepository;
+    private final AdminGeneralMapper adminGeneralMapper;
 
     @Override
     public UserEntity save(UserModel userModel) {
@@ -40,8 +46,12 @@ public class UserServicesImpl implements BaseService<UserEntity,UserModel, UserD
             userEntity.setFk_id_empleado(empleado);
         }
         if (userModel.getFk_id_administrador() != null ){
-            AdminEntity admin = adminRepository.findById(userModel.getFk_id_administrador()).orElseThrow(()-> new RuntimeException("Empleado no encontrado con ID: " + userModel.getFk_id_administrador()));
+            AdminEntity admin = adminRepository.findById(userModel.getFk_id_administrador()).orElseThrow(()-> new RuntimeException("Administrador no encontrado con ID: " + userModel.getFk_id_administrador()));
             userEntity.setFk_id_administrador(admin);
+        }
+        if (userModel.getFk_id_administrador_general() != null ){
+            AdminGeneralEntity admin_general = adminGeneralRepository.findById(userModel.getFk_id_administrador_general()).orElseThrow(()-> new RuntimeException("Administrador generalw no encontrado con ID: " + userModel.getFk_id_administrador_general()));
+            userEntity.setFk_id_administrador_general(admin_general);
         }
         return userRepository.save(userEntity);
     }
@@ -60,6 +70,15 @@ public class UserServicesImpl implements BaseService<UserEntity,UserModel, UserD
         AdminEntity adminEntity = userEntity.getFk_id_administrador();
         if(adminEntity != null){
             return adminMapper.toDTO(adminEntity);
+        }
+        return null;
+    }
+
+    public AdminGeneralDTO getFkAdminGeneralById(Long id){
+        UserEntity userEntity = userRepository.findById(id).orElse(null);
+        AdminGeneralEntity admin = userEntity.getFk_id_administrador_general();
+        if(admin != null){
+            return adminGeneralMapper.toDTO(admin);
         }
         return null;
     }

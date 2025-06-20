@@ -22,12 +22,12 @@ public class UserEntity {
     private String rol;
     private Long fk_id_cliente;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_empleado")
+    @JoinColumn(name = "fk_id_empleado", unique = true)
     private EmpleadoEntity fk_id_empleado;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_administrador_general")
+    @JoinColumn(name = "fk_id_administrador_general", unique = true)
     private AdminGeneralEntity fk_id_administrador_general;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_administrador")
+    @JoinColumn(name = "fk_id_administrador", unique = true)
     private AdminEntity fk_id_administrador;
 }
