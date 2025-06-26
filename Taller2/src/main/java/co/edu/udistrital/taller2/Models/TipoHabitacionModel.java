@@ -1,4 +1,4 @@
-package co.edu.udistrital.taller2.Models;
+package co.edu.udistrital.taller2.models;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class TipoHabitacionModel {
-    private Integer idHotel;
+    private long idHotel;
     private String nombre;
-    private Integer cantidad;
+    private int cantidad;
 }

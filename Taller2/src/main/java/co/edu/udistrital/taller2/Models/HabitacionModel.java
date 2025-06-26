@@ -7,9 +7,9 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class HabitacionModel {
-    private Integer numeroHabitacion;
-    private Integer idTipoHabitacion;
-    private Integer precioDia;
+    private int numeroHabitacion;
+    private long idTipoHabitacion;
+    private int precioDia;
     private Boolean disponible;
-    private Integer idHotel;
+    private long idHotel;
 }

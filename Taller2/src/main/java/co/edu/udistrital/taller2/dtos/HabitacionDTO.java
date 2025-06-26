@@ -7,10 +7,10 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class HabitacionDTO {
-    private Integer idHabitacion;
-    private Integer numeroHabitacion;
-    private Integer idTipoHabitacion;
-    private Integer precioDia;
+    private Long idHabitacion;
+    private Int numeroHabitacion;
+    private Long idTipoHabitacion;
+    private Int precioDia;
     private Boolean disponible;
-    private Integer idHotel;
+    private Long idHotel;
 }

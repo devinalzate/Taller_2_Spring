@@ -20,17 +20,17 @@ public class TipoHabitacionController {
     }
 
     @PutMapping("/{id}")
-    public TipoHabitacionDTO update(@PathVariable Integer id, @RequestBody TipoHabitacionModel model) {
+    public TipoHabitacionDTO update(@PathVariable Long id, @RequestBody TipoHabitacionModel model) {
         return tipoHabitacionService.update(id, model);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         tipoHabitacionService.delete(id);
     }
 
     @GetMapping("/{id}")
-    public TipoHabitacionDTO getById(@PathVariable Integer id) {
+    public TipoHabitacionDTO getById(@PathVariable Long id) {
         return tipoHabitacionService.findById(id);
     }
 

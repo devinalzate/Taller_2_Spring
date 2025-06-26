@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class HotelDTO {
-    private Integer idHotel;
+    private Long idHotel;
     private String nombre;
     private String ciudad;
     private String telefono;

@@ -20,17 +20,17 @@ public class HotelController {
     }
 
     @PutMapping("/{id}")
-    public HotelDTO update(@PathVariable Integer id, @RequestBody HotelModel model) {
+    public HotelDTO update(@PathVariable Long id, @RequestBody HotelModel model) {
         return hotelService.update(id, model);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         hotelService.delete(id);
     }
 
     @GetMapping("/{id}")
-    public HotelDTO getById(@PathVariable Integer id) {
+    public HotelDTO getById(@PathVariable Long id) {
         return hotelService.findById(id);
     }
 

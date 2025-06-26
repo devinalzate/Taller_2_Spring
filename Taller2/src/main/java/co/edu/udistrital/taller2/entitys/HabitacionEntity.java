@@ -14,17 +14,17 @@ public class HabitacionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_habitacion")
-    private Integer idHabitacion;
+    private Long idHabitacion;
 
     @Column(name = "numero_habitacion", nullable = false, unique = true)
-    private Integer numeroHabitacion;
+    private Int numeroHabitacion;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_tipo_habitacion", nullable = false)
     private TipoHabitacionEntity tipoHabitacion;
 
     @Column(name = "precio_dia", nullable = false)
-    private Integer precioDia;
+    private Int precioDia;
 
     @Column(name = "disponible")
     private Boolean disponible;

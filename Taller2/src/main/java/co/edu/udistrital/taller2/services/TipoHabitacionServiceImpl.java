@@ -15,38 +15,38 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class TipoHabitacionServiceImpl implements TipoHabitacionService {
+public class TipoHabitacionServiceImpl implements BaseService<TipoHabitacionEntity, TipoHabitacionModel, TipoHabitacionDTO> {
     private final TipoHabitacionRepository tipoHabitacionRepository;
     private final HotelRepository hotelRepository;
 
     @Override
-    public TipoHabitacionDTO save(TipoHabitacionModel model) {
+    public TipoHabitacionEntity save(TipoHabitacionModel model) {
         HotelEntity hotel = hotelRepository.findById(model.getIdHotel()).orElse(null);
         if (hotel == null) return null;
         TipoHabitacionEntity entity = TipoHabitacionMapper.toEntity(model, hotel);
-        return TipoHabitacionMapper.toDTO(tipoHabitacionRepository.save(entity));
+        return tipoHabitacionRepository.save(entity);
     }
 
     @Override
-    public TipoHabitacionDTO update(Integer id, TipoHabitacionModel model) {
-        TipoHabitacionEntity entity = tipoHabitacionRepository.findById(id).orElse(null);
-        if (entity == null) return null;
+    public TipoHabitacionEntity update(TipoHabitacionModel model) {
         HotelEntity hotel = hotelRepository.findById(model.getIdHotel()).orElse(null);
         if (hotel == null) return null;
-        entity.setHotel(hotel);
-        entity.setNombre(model.getNombre());
-        entity.setCantidad(model.getCantidad());
-        return TipoHabitacionMapper.toDTO(tipoHabitacionRepository.save(entity));
+        TipoHabitacionEntity entity = TipoHabitacionMapper.toEntity(model, hotel);
+        return tipoHabitacionRepository.save(entity);
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         tipoHabitacionRepository.deleteById(id);
     }
 
     @Override
-    public TipoHabitacionDTO findById(Integer id) {
-        return tipoHabitacionRepository.findById(id).map(TipoHabitacionMapper::toDTO).orElse(null);
+    public TipoHabitacionDTO findById(Long id) {
+        TipoHabitacionEntity entity = tipoHabitacionRepository.findById(id).orElse(null);
+        if (entity != null) {
+            return TipoHabitacionMapper.toDTO(entity);
+        }
+        return null;
     }
 
     @Override

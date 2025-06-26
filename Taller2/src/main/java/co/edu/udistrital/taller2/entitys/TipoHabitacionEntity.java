@@ -14,7 +14,7 @@ public class TipoHabitacionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_habitacion")
-    private Integer idTipoHabitacion;
+    private Long idTipoHabitacion;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_hotel", nullable = false)
@@ -24,5 +24,5 @@ public class TipoHabitacionEntity {
     private String nombre;
 
     @Column(name = "cantidad")
-    private Integer cantidad;
+    private Int cantidad;
 }

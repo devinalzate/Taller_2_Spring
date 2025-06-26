@@ -13,35 +13,33 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class HotelServiceImpl implements HotelService {
+public class HotelServiceImpl implements BaseService<HotelEntity, HotelModel, HotelDTO> {
     private final HotelRepository hotelRepository;
 
     @Override
-    public HotelDTO save(HotelModel model) {
+    public HotelEntity save(HotelModel model) {
         HotelEntity entity = HotelMapper.toEntity(model);
-        return HotelMapper.toDTO(hotelRepository.save(entity));
+        return hotelRepository.save(entity);
     }
 
     @Override
-    public HotelDTO update(Integer id, HotelModel model) {
-        HotelEntity entity = hotelRepository.findById(id).orElse(null);
-        if (entity == null) return null;
-        entity.setNombre(model.getNombre());
-        entity.setCiudad(model.getCiudad());
-        entity.setTelefono(model.getTelefono());
-        entity.setCorreo(model.getCorreo());
-        entity.setDireccion(model.getDireccion());
-        return HotelMapper.toDTO(hotelRepository.save(entity));
+    public HotelEntity update(HotelModel model) {
+        HotelEntity entity = HotelMapper.toEntity(model);
+        return hotelRepository.save(entity);
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         hotelRepository.deleteById(id);
     }
 
     @Override
-    public HotelDTO findById(Integer id) {
-        return hotelRepository.findById(id).map(HotelMapper::toDTO).orElse(null);
+    public HotelDTO findById(Long id) {
+        HotelEntity entity = hotelRepository.findById(id).orElse(null);
+        if (entity != null) {
+            return HotelMapper.toDTO(entity);
+        }
+        return null;
     }
 
     @Override

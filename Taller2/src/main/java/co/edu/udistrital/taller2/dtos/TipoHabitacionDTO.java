@@ -7,8 +7,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class TipoHabitacionDTO {
-    private Integer idTipoHabitacion;
-    private Integer idHotel;
+    private Int idTipoHabitacion;
+    private Int idHotel;
     private String nombre;
-    private Integer cantidad;
+    private Int cantidad;
 }

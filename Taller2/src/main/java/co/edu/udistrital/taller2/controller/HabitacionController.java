@@ -20,17 +20,17 @@ public class HabitacionController {
     }
 
     @PutMapping("/{id}")
-    public HabitacionDTO update(@PathVariable Integer id, @RequestBody HabitacionModel model) {
+    public HabitacionDTO update(@PathVariable Long id, @RequestBody HabitacionModel model) {
         return habitacionService.update(id, model);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         habitacionService.delete(id);
     }
 
     @GetMapping("/{id}")
-    public HabitacionDTO getById(@PathVariable Integer id) {
+    public HabitacionDTO getById(@PathVariable Long id) {
         return habitacionService.findById(id);
     }
 
