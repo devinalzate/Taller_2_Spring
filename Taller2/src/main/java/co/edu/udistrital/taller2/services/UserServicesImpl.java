@@ -3,10 +3,12 @@ package co.edu.udistrital.taller2.services;
 import co.edu.udistrital.taller2.Models.UserModel;
 import co.edu.udistrital.taller2.dtos.AdminDTO;
 import co.edu.udistrital.taller2.dtos.AdminGeneralDTO;
+import co.edu.udistrital.taller2.dtos.ClienteDTO;
 import co.edu.udistrital.taller2.dtos.EmpleadoDTO;
 import co.edu.udistrital.taller2.dtos.UserDTO;
 import co.edu.udistrital.taller2.entitys.AdminEntity;
 import co.edu.udistrital.taller2.entitys.AdminGeneralEntity;
+import co.edu.udistrital.taller2.entitys.ClienteEntity;
 import co.edu.udistrital.taller2.entitys.EmpleadoEntity;
 import co.edu.udistrital.taller2.entitys.UserEntity;
 import co.edu.udistrital.taller2.repos.AdminGeneralRepository;
@@ -15,6 +17,7 @@ import co.edu.udistrital.taller2.repos.EmpleadoRepository;
 import co.edu.udistrital.taller2.repos.UserRepository;
 import co.edu.udistrital.taller2.utils.AdminGeneralMapper;
 import co.edu.udistrital.taller2.utils.AdminMapper;
+import co.edu.udistrital.taller2.utils.ClienteMapper;
 import co.edu.udistrital.taller2.utils.EmpleadoMapper;
 import co.edu.udistrital.taller2.utils.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -79,6 +82,15 @@ public class UserServicesImpl implements BaseService<UserEntity,UserModel, UserD
         AdminGeneralEntity admin = userEntity.getFk_id_administrador_general();
         if(admin != null){
             return adminGeneralMapper.toDTO(admin);
+        }
+        return null;
+    }
+
+    public ClienteDTO getFkClienteById(Long id){
+        UserEntity userEntity = userRepository.findById(id).orElse(null);
+        ClienteEntity cliente = userEntity.getFk_id_cliente();
+        if(cliente != null){
+            return ClienteMapper.toDTO(cliente);
         }
         return null;
     }

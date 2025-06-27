@@ -14,7 +14,7 @@ public class UserMapper {
         dto.setId_usuario(entity.getId_usuario());
         dto.setNombre_usuario(entity.getNombre_usuario());
         dto.setRol(entity.getRol());
-        dto.setFk_id_cliente(entity.getFk_id_cliente());
+        dto.setFk_id_cliente(entity.getFk_id_cliente() != null ? entity.getFk_id_cliente().getId_cliente() : null);
         dto.setFk_id_empleado(entity.getFk_id_empleado() != null ? entity.getFk_id_empleado().getId_empleado() : null);
         dto.setFk_id_administrador_general(entity.getFk_id_administrador_general() != null ? entity.getFk_id_administrador_general().getId_administrador_general() : null);
         dto.setFk_id_administrador(entity.getFk_id_administrador() != null ? entity.getFk_id_administrador().getId_administrador() : null);
@@ -29,7 +29,6 @@ public class UserMapper {
         entity.setId_usuario(dto.getId_usuario());
         entity.setNombre_usuario(dto.getNombre_usuario());
         entity.setRol(dto.getRol());
-        entity.setFk_id_cliente(dto.getFk_id_cliente());
 
         // Relaciones: estas se deben setear desde fuera si se tienen entidades cargadas
         return entity;
@@ -43,7 +42,7 @@ public class UserMapper {
         model.setNombre_usuario(entity.getNombre_usuario());
         model.setContrasena(entity.getContrasena());
         model.setRol(entity.getRol());
-        model.setFk_id_cliente(entity.getFk_id_cliente());
+        model.setFk_id_cliente(entity.getFk_id_cliente() != null ? entity.getFk_id_cliente().getId_cliente() : null);
         model.setFk_id_empleado(entity.getFk_id_empleado() != null ? entity.getFk_id_empleado().getId_empleado() : null);
         model.setFk_id_administrador_general(entity.getFk_id_administrador_general() != null ? entity.getFk_id_administrador_general().getId_administrador_general() : null);
         model.setFk_id_administrador(entity.getFk_id_administrador() != null ? entity.getFk_id_administrador().getId_administrador() : null);
@@ -58,7 +57,6 @@ public class UserMapper {
         entity.setNombre_usuario(model.getNombre_usuario());
         entity.setContrasena(model.getContrasena());
         entity.setRol(model.getRol());
-        entity.setFk_id_cliente(model.getFk_id_cliente());
 
         // Relaciones se deben cargar y setear desde el servicio con repositorio
         return entity;
@@ -71,7 +69,7 @@ public class UserMapper {
         UserModel model = new UserModel();
         model.setNombre_usuario(dto.getNombre_usuario());
         model.setRol(dto.getRol());
-        model.setFk_id_cliente(dto.getFk_id_cliente());
+        model.setFk_id_cliente(dto.getFk_id_cliente() != null ? dto.getFk_id_cliente() : null);
         model.setFk_id_empleado(dto.getFk_id_empleado());
         model.setFk_id_administrador_general(dto.getFk_id_administrador_general());
         model.setFk_id_administrador(dto.getFk_id_administrador());
@@ -85,7 +83,7 @@ public class UserMapper {
         UserDTO dto = new UserDTO();
         dto.setNombre_usuario(model.getNombre_usuario());
         dto.setRol(model.getRol());
-        dto.setFk_id_cliente(model.getFk_id_cliente());
+        dto.setFk_id_cliente(model.getFk_id_cliente() != null ? model.getFk_id_cliente() : null);
         dto.setFk_id_empleado(model.getFk_id_empleado());
         dto.setFk_id_administrador_general(model.getFk_id_administrador_general());
         dto.setFk_id_administrador(model.getFk_id_administrador());
