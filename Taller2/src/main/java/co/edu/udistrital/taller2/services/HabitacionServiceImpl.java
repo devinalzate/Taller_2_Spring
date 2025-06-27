@@ -12,6 +12,7 @@ import co.edu.udistrital.taller2.utils.HabitacionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,7 @@ public class HabitacionServiceImpl implements BaseService<HabitacionEntity, Habi
         TipoHabitacionEntity tipo = tipoHabitacionRepository.findById(hotelModel.getIdTipoHabitacion()).orElse(null);
         if (hotel == null || tipo == null) return null;
         HabitacionEntity guardar = HabitacionMapper.toEntity(hotelModel, tipo, hotel);
-        return habitacionRepository.save(entity);
+        return habitacionRepository.save(guardar);
     }
 
     @Override
@@ -63,7 +64,7 @@ public class HabitacionServiceImpl implements BaseService<HabitacionEntity, Habi
         List<HabitacionDTO> habitacionesDTOS = new ArrayList<>();
 
         for(HabitacionEntity habitacion : habitaciones){
-            habitacionesDTOS.add(habitacionMapper.toDTO(habitacion));
+            habitacionesDTOS.add(HabitacionMapper.toDTO(habitacion));
         }
         return habitacionesDTOS;
     }

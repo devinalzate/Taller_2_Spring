@@ -5,6 +5,7 @@ import co.edu.udistrital.taller2.entitys.HabitacionEntity;
 import co.edu.udistrital.taller2.models.HabitacionModel;
 import co.edu.udistrital.taller2.services.HabitacionServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

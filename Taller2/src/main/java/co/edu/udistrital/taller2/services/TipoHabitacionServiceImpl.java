@@ -24,7 +24,7 @@ public class TipoHabitacionServiceImpl implements BaseService<TipoHabitacionEnti
     public TipoHabitacionEntity save(TipoHabitacionModel tipoHabitacionModel) {
         HotelEntity guardar = hotelRepository.findById(tipoHabitacionModel.getIdHotel()).orElse(null);
         if (guardar == null) return null;
-        TipoHabitacionEntity entity = tipoHabitacionMapper.toEntity(tipoHabitacionModel, guardar);
+        TipoHabitacionEntity entity = TipoHabitacionMapper.toEntity(tipoHabitacionModel, guardar);
         return tipoHabitacionRepository.save(entity);
     }
 
@@ -37,7 +37,7 @@ public class TipoHabitacionServiceImpl implements BaseService<TipoHabitacionEnti
     public TipoHabitacionEntity update(TipoHabitacionModel model) {
         HotelEntity hotel = hotelRepository.findById(model.getIdHotel()).orElse(null);
         if (hotel == null) return null;
-        TipoHabitacionEntity tipoHabitacionEntity = tipoHabitacionMapper.toEntityFromModel(model, hotel);
+        TipoHabitacionEntity tipoHabitacionEntity = TipoHabitacionMapper.toEntityFromModel(model, hotel);
         if (tipoHabitacionEntity != null){
             return tipoHabitacionRepository.save(tipoHabitacionEntity);
         }
@@ -48,7 +48,7 @@ public class TipoHabitacionServiceImpl implements BaseService<TipoHabitacionEnti
     public TipoHabitacionDTO findById(Long id) {
         TipoHabitacionEntity tipoHabitacionEntity = tipoHabitacionRepository.findById(id).orElse(null);
         if (tipoHabitacionEntity != null) {
-            TipoHabitacionDTO tipoHabitacionDTO = tipoHabitacionMapper.toDTO(tipoHabitacionEntity);
+            TipoHabitacionDTO tipoHabitacionDTO = TipoHabitacionMapper.toDTO(tipoHabitacionEntity);
             return tipoHabitacionDTO;
         }
         return null;
