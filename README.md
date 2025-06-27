@@ -218,22 +218,6 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 }
 ```
 
----
-
-## ⚠️ Notas Adicionales
-
-- ⚠️ **Contraseñas u otros datos sensibles no deben incluirse en DTOs.**
-- 💡 Se recomienda manejar excepciones y errores con un formato estándar.
-- 🛡️ Para relaciones `@OneToOne`, asegúrate de que las FK no se repitan.
-- 🔐 Si usas autenticación, añade un encabezado `Authorization: Bearer <token>`.
-
----
-
-## 🧪 Recomendaciones de prueba
-
-- Prueba los endpoints con datos válidos e inválidos.
-- Asegúrate de probar restricciones de claves foráneas (`fk_*`).
-- Verifica que las validaciones sean coherentes con el modelo de dominio.
 
 ---
 
