@@ -211,7 +211,7 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 ```json
 {
   "id_cliente": 1,
-  " "primer_nombre" : "cliente",
+   "primer_nombre" : "cliente",
     "primer_apellido" : "General",
     "correo" : "telefono",
     "telefono" : "334445511"
