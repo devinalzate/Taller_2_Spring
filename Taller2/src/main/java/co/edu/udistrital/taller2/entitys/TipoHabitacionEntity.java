@@ -17,7 +17,7 @@ public class TipoHabitacionEntity {
 
     @OneToOne
     @JoinColumn(name = "fk_id_habitacion", unique = true)
-    private TipoHabitacionEntity Habitacion;
+    private HabitacionEntity Habitacion;
 
     private String nombre;
     private int cantidad;
