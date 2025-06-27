@@ -1,7 +1,7 @@
 package co.edu.udistrital.taller2.controller;
 
+import co.edu.udistrital.taller2.Models.TipoHabitacionModel;
 import co.edu.udistrital.taller2.dtos.TipoHabitacionDTO;
-import co.edu.udistrital.taller2.models.TipoHabitacionModel;
 import co.edu.udistrital.taller2.services.TipoHabitacionServiceImpl;
 import co.edu.udistrital.taller2.entitys.TipoHabitacionEntity;
 import org.springframework.http.ResponseEntity;

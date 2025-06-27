@@ -1,8 +1,8 @@
 package co.edu.udistrital.taller2.controller;
 
+import co.edu.udistrital.taller2.Models.HabitacionModel;
 import co.edu.udistrital.taller2.dtos.HabitacionDTO;
 import co.edu.udistrital.taller2.entitys.HabitacionEntity;
-import co.edu.udistrital.taller2.models.HabitacionModel;
 import co.edu.udistrital.taller2.services.HabitacionServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

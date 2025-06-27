@@ -1,7 +1,7 @@
 package co.edu.udistrital.taller2.controller;
 
+import co.edu.udistrital.taller2.Models.HotelModel;
 import co.edu.udistrital.taller2.dtos.HotelDTO;
-import co.edu.udistrital.taller2.models.HotelModel;
 import co.edu.udistrital.taller2.services.HotelServiceImpl;
 import co.edu.udistrital.taller2.entitys.HotelEntity;
 import lombok.RequiredArgsConstructor;
