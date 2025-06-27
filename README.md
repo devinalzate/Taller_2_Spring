@@ -221,5 +221,3 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 
 ---
 
-> 📅 Última actualización: 2025-06-27
-
