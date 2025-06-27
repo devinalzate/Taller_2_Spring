@@ -15,17 +15,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class HotelServiceImpl implements BaseService<HotelEntity, HotelModel, HotelDTO> {
     private final HotelRepository hotelRepository;
+    private final HotelMapper hotelMapper;
 
     @Override
-    public HotelEntity save(HotelModel model) {
-        HotelEntity entity = HotelMapper.toEntity(model);
-        return hotelRepository.save(entity);
-    }
-
-    @Override
-    public HotelEntity update(HotelModel model) {
-        HotelEntity entity = HotelMapper.toEntity(model);
-        return hotelRepository.save(entity);
+    public HotelEntity save(HotelModel hotelModel) {
+        HotelEntity guardar = HotelMapper.toEntityFromModel(hotelModel);
+        if(guardar!= null){
+            return hotelRepository.save(guardar);
+        }
+        return null;
     }
 
     @Override
@@ -34,16 +32,31 @@ public class HotelServiceImpl implements BaseService<HotelEntity, HotelModel, Ho
     }
 
     @Override
+    public HotelEntity update(HotelModel hotelModel) {
+        HotelEntity guardar = HotelMapper.toEntityFromModel(hotelModel);
+        if (guardar != null) {
+            return hotelRepository.save(guardar);
+        }
+        return null;
+    }
+
+    @Override
     public HotelDTO findById(Long id) {
-        HotelEntity entity = hotelRepository.findById(id).orElse(null);
-        if (entity != null) {
-            return HotelMapper.toDTO(entity);
+        HotelEntity hotel = hotelRepository.findById(id).orElse(null);
+        if (hotel != null) {
+            return HotelMapper.toDTO(hotel);
         }
         return null;
     }
 
     @Override
     public List<HotelDTO> findAll() {
-        return hotelRepository.findAll().stream().map(HotelMapper::toDTO).collect(Collectors.toList());
+        List<HotelEntity> hotel = hotelRepository.findAll();
+        List<HotelDTO> hotelesDTOS = new ArrayList<>();
+
+        for(HotelEntity hotel : hoteles){
+            hotelesDTOS.add(hotelMapper.toDTO(hotel));
+        }
+        return hotelesDTOS;
     }
 }

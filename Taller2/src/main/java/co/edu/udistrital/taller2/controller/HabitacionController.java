@@ -3,7 +3,6 @@ package co.edu.udistrital.taller2.controller;
 import co.edu.udistrital.taller2.dtos.HabitacionDTO;
 import co.edu.udistrital.taller2.entitys.HabitacionEntity;
 import co.edu.udistrital.taller2.models.HabitacionModel;
-import co.edu.udistrital.taller2.services.HabitacionService;
 import co.edu.udistrital.taller2.services.HabitacionServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,33 +10,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/habitaciones")
+@RequestMapping("/api/v1/habitaciones")
 @RequiredArgsConstructor
 public class HabitacionController {
+
     private final HabitacionServiceImpl habitacionService;
 
-    @PostMapping
-    public HabitacionEntity create(@RequestBody HabitacionModel model) {
-        return habitacionService.save(model);
-    }
-
-    @PutMapping("/{id}")
-    public HabitacionDTO update(@PathVariable Long id, @RequestBody HabitacionModel model) {
-        return habitacionService.update(id, model);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        habitacionService.delete(id);
+    @PostMapping("/save_habitacion")
+    private ResponseEntity<HabitacionEntity> saveHabitacion(@RequestBody HabitacionModel habitacionModel) {
+        return ResponseEntity.ok(habitacionService.save(habitacionModel));
     }
 
     @GetMapping("/{id}")
-    public HabitacionDTO getById(@PathVariable Long id) {
-        return habitacionService.findById(id);
+    private ResponseEntity<HabitacionDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(habitacionService.findById(id));
     }
 
-    @GetMapping
-    public List<HabitacionDTO> getAll() {
-        return habitacionService.findAll();
+    @GetMapping("/get_all_habitaciones")
+    private ResponseEntity<List<HabitacionDTO>> findAll() {
+        return ResponseEntity.ok(habitacionService.findAll());
+    }
+
+    @PutMapping("/update_habitacion")
+    private ResponseEntity<HabitacionEntity> updateHabitacion(@RequestBody HabitacionModel habitacionModel) {
+        return ResponseEntity.ok(habitacionService.update(habitacionModel));
+    }
+
+    @DeleteMapping("/{id}")
+    private ResponseEntity<Void> deleteHabitacion(@PathVariable Long id) {
+        habitacionService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

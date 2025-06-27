@@ -16,22 +16,15 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class TipoHabitacionServiceImpl implements BaseService<TipoHabitacionEntity, TipoHabitacionModel, TipoHabitacionDTO> {
+
     private final TipoHabitacionRepository tipoHabitacionRepository;
     private final HotelRepository hotelRepository;
 
     @Override
-    public TipoHabitacionEntity save(TipoHabitacionModel model) {
-        HotelEntity hotel = hotelRepository.findById(model.getIdHotel()).orElse(null);
-        if (hotel == null) return null;
-        TipoHabitacionEntity entity = TipoHabitacionMapper.toEntity(model, hotel);
-        return tipoHabitacionRepository.save(entity);
-    }
-
-    @Override
-    public TipoHabitacionEntity update(TipoHabitacionModel model) {
-        HotelEntity hotel = hotelRepository.findById(model.getIdHotel()).orElse(null);
-        if (hotel == null) return null;
-        TipoHabitacionEntity entity = TipoHabitacionMapper.toEntity(model, hotel);
+    public TipoHabitacionEntity save(TipoHabitacionModel tipoHabitacionModel) {
+        HotelEntity guardar = hotelRepository.findById(tipoHabitacionModel.getIdHotel()).orElse(null);
+        if (guardar == null) return null;
+        TipoHabitacionEntity entity = tipoHabitacionMapper.toEntity(tipoHabitacionModel, guardar);
         return tipoHabitacionRepository.save(entity);
     }
 
@@ -41,16 +34,34 @@ public class TipoHabitacionServiceImpl implements BaseService<TipoHabitacionEnti
     }
 
     @Override
+    public TipoHabitacionEntity update(TipoHabitacionModel model) {
+        HotelEntity hotel = hotelRepository.findById(model.getIdHotel()).orElse(null);
+        if (hotel == null) return null;
+        TipoHabitacionEntity tipoHabitacionEntity = tipoHabitacionMapper.toEntityFromModel(model, hotel);
+        if (tipoHabitacionEntity != null){
+            return tipoHabitacionRepository.save(tipoHabitacionEntity);
+        }
+        return null;
+    }
+
+    @Override
     public TipoHabitacionDTO findById(Long id) {
-        TipoHabitacionEntity entity = tipoHabitacionRepository.findById(id).orElse(null);
-        if (entity != null) {
-            return TipoHabitacionMapper.toDTO(entity);
+        TipoHabitacionEntity tipoHabitacionEntity = tipoHabitacionRepository.findById(id).orElse(null);
+        if (tipoHabitacionEntity != null) {
+            TipoHabitacionDTO tipoHabitacionDTO = tipoHabitacionMapper.toDTO(tipoHabitacionEntity);
+            return tipoHabitacionDTO;
         }
         return null;
     }
 
     @Override
     public List<TipoHabitacionDTO> findAll() {
-        return tipoHabitacionRepository.findAll().stream().map(TipoHabitacionMapper::toDTO).collect(Collectors.toList());
+        List<TipoHabitacionEntity> tiposHabitacion = tipoHabitacionRepository.findAll();
+        List<TipoHabitacionDTO> tipoHabitacionDTOS = new ArrayList<>();
+
+        for(TipoHabitacionEntity tipoHabitacion : tiposHabitacion){
+            tipoHabitacionDTOS.add(tiposHabitacionMapper.toDTO(tipoHabitacion));
+        }
+        return tipoHabitacionDTOS;
     }
 }
