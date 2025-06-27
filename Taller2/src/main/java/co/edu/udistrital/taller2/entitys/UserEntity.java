@@ -20,10 +20,15 @@ public class UserEntity {
     private String nombre_usuario;
     private String contrasena;
     private String rol;
-    private Long fk_id_cliente;
+    
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_id_empleado", unique = true)
     private EmpleadoEntity fk_id_empleado;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_id_cliente", unique = true)
+    private ClienteEntity fk_id_cliente;
+    
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_id_administrador_general", unique = true)
     private AdminGeneralEntity fk_id_administrador_general;

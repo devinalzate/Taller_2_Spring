@@ -3,6 +3,7 @@ package co.edu.udistrital.taller2.controller;
 import co.edu.udistrital.taller2.Models.UserModel;
 import co.edu.udistrital.taller2.dtos.AdminDTO;
 import co.edu.udistrital.taller2.dtos.AdminGeneralDTO;
+import co.edu.udistrital.taller2.dtos.ClienteDTO;
 import co.edu.udistrital.taller2.dtos.EmpleadoDTO;
 import co.edu.udistrital.taller2.dtos.UserDTO;
 import co.edu.udistrital.taller2.entitys.UserEntity;
@@ -48,6 +49,11 @@ public class UserController {
     @GetMapping("/admin_general/{id}")
     private ResponseEntity<AdminGeneralDTO> getAdminGeneral(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getFkAdminGeneralById(id));
+    }
+
+    @GetMapping("/cliente/{id}")
+    private ResponseEntity<ClienteDTO> getCliente(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getFkClienteById(id));
     }
 
     @DeleteMapping("/{id}")
