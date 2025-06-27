@@ -1,5 +1,6 @@
 package co.edu.udistrital.taller2.services;
 
+import co.edu.udistrital.taller2.Models.HabitacionModel;
 import co.edu.udistrital.taller2.dtos.HabitacionDTO;
 import co.edu.udistrital.taller2.entitys.HabitacionEntity;
 import co.edu.udistrital.taller2.entitys.HotelEntity;
@@ -9,6 +10,7 @@ import co.edu.udistrital.taller2.repos.HabitacionRepository;
 import co.edu.udistrital.taller2.repos.HotelRepository;
 import co.edu.udistrital.taller2.repos.TipoHabitacionRepository;
 import co.edu.udistrital.taller2.utils.HabitacionMapper;
+import co.edu.udistrital.taller2.utils.HotelMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +45,7 @@ public class HabitacionServiceImpl implements BaseService<HabitacionEntity, Habi
         HotelEntity hotel = hotelRepository.findById(hotelModel.getIdHotel()).orElse(null);
         TipoHabitacionEntity tipo = tipoHabitacionRepository.findById(hotelModel.getIdTipoHabitacion()).orElse(null);
         if (hotel == null || tipo == null) return null;
-        HabitacionEntity guardar = HabitacionMapper.toEntity(hotelModel, tipo, hotel);
+        HabitacionEntity guardar = HotelMapper.toEntity(hotelModel, tipo, hotel);
         return habitacionRepository.save(guardar);
     }
 
