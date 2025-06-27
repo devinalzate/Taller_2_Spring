@@ -1,4 +1,4 @@
-package co.edu.udistrital.taller2.controllers;
+package co.edu.udistrital.taller2.controller;
 
 import co.edu.udistrital.taller2.dtos.TipoHabitacionDTO;
 import co.edu.udistrital.taller2.models.TipoHabitacionModel;
@@ -17,7 +17,7 @@ public class TipoHabitacionController {
     private final TipoHabitacionServiceImpl tipoHabitacionService;
 
     @PostMapping("/save_tipo-habitacion")
-    private ResponseEntity<TipoHabitacionEntity> saveTipo-habitacion(@RequestBody TipoHabitacionModel tipoHabitacionModel) {
+    private ResponseEntity<TipoHabitacionEntity> saveTipohabitacion(@RequestBody TipoHabitacionModel tipoHabitacionModel) {
         return ResponseEntity.ok(tipoHabitacionService.save(tipoHabitacionModel));
     }
 

@@ -8,6 +8,7 @@ import co.edu.udistrital.taller2.utils.HotelMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,11 +16,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class HotelServiceImpl implements BaseService<HotelEntity, HotelModel, HotelDTO> {
     private final HotelRepository hotelRepository;
-    private final HotelMapper hotelMapper;
 
     @Override
     public HotelEntity save(HotelModel hotelModel) {
-        HotelEntity guardar = HotelMapper.toEntityFromModel(hotelModel);
+        HotelEntity guardar = HotelMapper.toEntity(hotelModel);
         if(guardar!= null){
             return hotelRepository.save(guardar);
         }
@@ -33,7 +33,7 @@ public class HotelServiceImpl implements BaseService<HotelEntity, HotelModel, Ho
 
     @Override
     public HotelEntity update(HotelModel hotelModel) {
-        HotelEntity guardar = HotelMapper.toEntityFromModel(hotelModel);
+        HotelEntity guardar = HotelMapper.toEntity(hotelModel);
         if (guardar != null) {
             return hotelRepository.save(guardar);
         }
@@ -51,11 +51,11 @@ public class HotelServiceImpl implements BaseService<HotelEntity, HotelModel, Ho
 
     @Override
     public List<HotelDTO> findAll() {
-        List<HotelEntity> hotel = hotelRepository.findAll();
+        List<HotelEntity> hoteles = hotelRepository.findAll();
         List<HotelDTO> hotelesDTOS = new ArrayList<>();
 
         for(HotelEntity hotel : hoteles){
-            hotelesDTOS.add(hotelMapper.toDTO(hotel));
+            hotelesDTOS.add(HotelMapper.toDTO(hotel));
         }
         return hotelesDTOS;
     }

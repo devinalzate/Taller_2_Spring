@@ -1,4 +1,4 @@
-package co.edu.udistrital.taller2.controllers;
+package co.edu.udistrital.taller2.controller;
 
 import co.edu.udistrital.taller2.dtos.HotelDTO;
 import co.edu.udistrital.taller2.models.HotelModel;
