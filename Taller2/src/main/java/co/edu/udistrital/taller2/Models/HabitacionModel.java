@@ -1,4 +1,4 @@
-package co.edu.udistrital.taller2.models;
+package co.edu.udistrital.taller2.Models;
 
 import lombok.*;
 

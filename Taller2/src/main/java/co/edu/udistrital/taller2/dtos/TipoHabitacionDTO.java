@@ -10,5 +10,5 @@ public class TipoHabitacionDTO {
     private Long idTipoHabitacion;
     private Long idHotel;
     private String nombre;
-    private Int cantidad;
+    private int cantidad;
 }

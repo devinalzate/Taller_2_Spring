@@ -1,5 +1,6 @@
 package co.edu.udistrital.taller2.services;
 
+import co.edu.udistrital.taller2.Models.HotelModel;
 import co.edu.udistrital.taller2.dtos.HotelDTO;
 import co.edu.udistrital.taller2.entitys.HotelEntity;
 import co.edu.udistrital.taller2.models.HotelModel;
