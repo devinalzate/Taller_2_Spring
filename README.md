@@ -1,4 +1,4 @@
-# 📘 Documentación de la API REST - Plantilla General
+# 📘 Documentación de la API REST - Gestion Hotelera
 
 Esta documentación describe cómo utilizar los endpoints estándar de una API REST basada en Spring Boot que implementa un servicio genérico `BaseService<F, T, E>` para manipular entidades y datos en una base de datos.
 
@@ -23,24 +23,28 @@ public interface BaseService<F, T, E> {
 
 ---
 
-## 📂 Endpoints Generales
+## 📂 Endpoints por entidad
 
 A continuación se describen los métodos REST disponibles, sus rutas, estructuras de entrada y salida, y recomendaciones de uso.
 
-### ✅ POST `/api/[entidad]` - Crear nuevo recurso
+## User
 
-- **Descripción:** Crea una nueva entidad en la base de datos.
-- **Cuerpo de la solicitud (JSON - Modelo T):**
+### ✅ POST `/api/v1/users/save_user` - Crear nuevo Usuario
+
+- **Descripción:** Crea una nueva entidad de usuario en la base de datos, pidiendo en esta el modelo asignado a la entidad
+- **Cuerpo de la solicitud (JSON):**
 ```json
 {
-  "nombre_usuario": "devalzate",
-  "contrasena": "1234",
-  "rol": "ADMIN",
-  "fk_id_empleado": 1,
-  "fk_id_cliente": 2
+    "nombre_usuario" : "primer admin general",
+    "contrasena" : "1232222",
+    "rol" : "Admin general",
+    "fk_id_administrador" : ingreso opcional... Borrar de no ser usado,
+    "fk_id_empleado" : ingreso opcional... Borrar de no ser usado,
+    "fk_id_cliente" : ingreso opcional... Borrar de no ser usado,
+    "fk_id_administrador_general" : ingreso opcional... Borrar de no ser usado,
 }
 ```
-- **Respuesta esperada (Entidad F):**
+- **Respuesta esperada (Entidad :**
 ```json
 {
   "id_usuario": 1,
@@ -53,12 +57,16 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
     "primer_apellido": "Pérez"
   },
   "fk_id_cliente": 2
+.
+.
+.
+.
 }
 ```
 
 ---
 
-### 📝 PUT `/api/[entidad]` - Actualizar recurso
+### 📝 PUT `/api/v1/users/update_user` - Actualizar usuario
 
 - **Descripción:** Modifica los datos de una entidad existente.
 - **Cuerpo de la solicitud (JSON - Modelo T):**
@@ -86,7 +94,7 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 
 ---
 
-### ❌ DELETE `/api/[entidad]/{id}` - Eliminar recurso
+### ❌ DELETE `/api//api/v1/users/{id}` - Eliminar usuario
 
 - **Descripción:** Elimina un recurso por su ID.
 - **Parámetro:** `id` (Long)
@@ -94,7 +102,7 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 
 ---
 
-### 🔍 GET `/api/[entidad]/{id}` - Obtener por ID
+### 🔍 GET `/api//api/v1/users/{id}` - Obtener por ID
 
 - **Descripción:** Devuelve los datos de una entidad específica.
 - **Parámetro:** `id` (Long)
@@ -111,9 +119,9 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 
 ---
 
-### 📋 GET `/api/[entidad]` - Obtener todos
+### 📋 GET `/api//api//api/v1/users/find_all_users` - Obtener todos los usuarios
 
-- **Descripción:** Lista todos los elementos de la entidad.
+- **Descripción:** Lista todos los elementos de la tabla.
 - **Respuesta (lista de DTOs):**
 ```json
 [
@@ -132,6 +140,82 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
     "fk_id_cliente": 3
   }
 ]
+```
+
+---
+
+---
+
+### 🔍 GET `/api//api/v1/users/empleado/{id}` - Obtener por ID el empleado
+
+- **Descripción:** Devuelve los datos de el empleado asociado al usuario con {id}.
+- **Parámetro:** `id` (Long)
+- **Respuesta (DTO - E):**
+```json
+{
+  "id_empleado": 1,
+  "primer_nombre" : "Devin",
+    "primer_apellido" : "Alzate",
+    "correo" : "telefono",
+    "telofono" : "3204713443"
+}
+```
+
+---
+
+---
+
+### 🔍 GET `/api//api/v1/users/admin/{id}` - Obtener por ID el admin
+
+- **Descripción:** Devuelve los datos de el admin asociado al usuario con {id}.
+- **Parámetro:** `id` (Long)
+- **Respuesta (DTO - E):**
+```json
+{
+  "id_admin": 1,
+   "primer_nombre" : "Hernesto",
+    "primer_apellido" : "Jaramillo",
+    "correo" : "telefono",
+    "telefono" : "334445511"
+}
+```
+
+---
+
+---
+
+### 🔍 GET `/api//api/v1/users/admin_general/{id}` - Obtener por ID el admin general
+
+- **Descripción:** Devuelve los datos de el admin general asociado al usuario con {id}.
+- **Parámetro:** `id` (Long)
+- **Respuesta (DTO - E):**
+```json
+{
+  "id_adming_general": 1,
+   "primer_nombre" : "Administrado",
+    "primer_apellido" : "General",
+    "correo" : "telefono",
+    "telefono" : "334445511"
+}
+```
+
+---
+
+---
+
+### 🔍 GET `/api//api/v1/users/cliente/{id}` - Obtener por ID el cliente
+
+- **Descripción:** Devuelve los datos de el cliente asociado al usuario con {id}.
+- **Parámetro:** `id` (Long)
+- **Respuesta (DTO - E):**
+```json
+{
+  "id_cliente": 1,
+  " "primer_nombre" : "cliente",
+    "primer_apellido" : "General",
+    "correo" : "telefono",
+    "telefono" : "334445511"
+}
 ```
 
 ---
