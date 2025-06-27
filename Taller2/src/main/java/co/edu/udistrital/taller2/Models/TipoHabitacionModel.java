@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class TipoHabitacionModel {
-    private long idHotel;
+    private Long idTipoHabitacion; 
     private String nombre;
     private int cantidad;
 }

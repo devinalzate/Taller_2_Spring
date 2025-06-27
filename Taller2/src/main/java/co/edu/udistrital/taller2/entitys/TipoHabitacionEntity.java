@@ -15,10 +15,12 @@ public class TipoHabitacionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTipoHabitacion;
 
+    private String nombre;
+    private int cantidad;
+
     @OneToOne
     @JoinColumn(name = "fk_id_habitacion", unique = true)
     private HabitacionEntity Habitacion;
 
-    private String nombre;
-    private int cantidad;
+
 }

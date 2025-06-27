@@ -41,33 +41,49 @@ public class HabitacionServiceImpl implements BaseService<HabitacionEntity, Habi
     }
 
     @Override
-    public HabitacionEntity update(HabitacionModel hotelModel) {
-        HotelEntity hotel = hotelRepository.findById(hotelModel.getIdHotel()).orElse(null);
-        TipoHabitacionEntity tipo = tipoHabitacionRepository.findById(hotelModel.getIdTipoHabitacion()).orElse(null);
-        if (hotel == null || tipo == null) return null;
-        HabitacionEntity guardar = HotelMapper.toEntity(hotelModel, tipo, hotel);
-        return habitacionRepository.save(guardar);
+    public HabitacionEntity update(HabitacionModel model) {
+        HabitacionEntity existing = habitacionRepository.findById(model.getIdHabitacion())
+                .orElseThrow(() -> new ResourceNotFoundException("Habitación no encontrada"));
+
+        // Actualizar campos necesarios
+        existing.setNumeroHabitacion(model.getNumeroHabitacion());
+        existing.setPrecioDia(model.getPrecioDia());
+        existing.setDisponible(model.getDisponible());
+
+        HotelEntity hotel = hotelRepository.findById(model.getIdHotel())
+                .orElseThrow(() -> new ResourceNotFoundException("Hotel no encontrado"));
+        TipoHabitacionEntity tipo = tipoHabitacionRepository.findById(model.getIdTipoHabitacion())
+                .orElseThrow(() -> new ResourceNotFoundException("Tipo de habitación no encontrado"));
+
+        existing.setHotel(hotel);
+        existing.setTipoHabitacion(tipo);
+
+        return habitacionRepository.save(existing);
     }
 
 
     @Override
     public HabitacionDTO findById(Long id) {
-        HabitacionEntity entity = habitacionRepository.findById(id).orElse(null);
-        if (entity != null) {
-            HabitacionDTO habitacionDTO = HabitacionMapper.toDTO(entity);
-            return habitacionDTO;
-        }
-        return null;
+        return habitacionRepository.findById(id)
+                .map(HabitacionMapper::toDTO)
+                .orElseThrow(() -> new ResourceNotFoundException("Habitación no encontrada"));
     }
 
     @Override
     public List<HabitacionDTO> findAll() {
-        List<HabitacionEntity> habitaciones = habitacionRepository.findAll();
-        List<HabitacionDTO> habitacionesDTOS = new ArrayList<>();
-
-        for(HabitacionEntity habitacion : habitaciones){
-            habitacionesDTOS.add(HabitacionMapper.toDTO(habitacion));
-        }
-        return habitacionesDTOS;
+        return habitacionRepository.findAll().stream()
+                .map(HabitacionMapper::toDTO)
+                .collect(Collectors.toList());
     }
+
+    public class ResourceNotFoundException extends RuntimeException {
+        public ResourceNotFoundException(String message) {
+            super(message);
+        }
+    }
+
+    HotelEntity hotel = hotelRepository.findById(model.getIdHotel())
+            .orElseThrow(() -> new ResourceNotFoundException("Hotel no encontrado"));
+
+
 }

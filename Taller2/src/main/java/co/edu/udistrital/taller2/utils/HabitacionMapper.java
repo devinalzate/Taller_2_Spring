@@ -29,4 +29,18 @@ public class HabitacionMapper {
                 .hotel(hotel)
                 .build();
     }
+
+    public static HabitacionEntity toEntityForUpdate(
+            HabitacionModel model,
+            HabitacionEntity existing,
+            TipoHabitacionEntity tipo,
+            HotelEntity hotel
+    ) {
+        existing.setNumeroHabitacion(model.getNumeroHabitacion());
+        existing.setTipoHabitacion(tipo);
+        existing.setPrecioDia(model.getPrecioDia());
+        existing.setDisponible(model.getDisponible());
+        existing.setHotel(hotel);
+        return existing;
+    }
 }
