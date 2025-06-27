@@ -8,9 +8,9 @@ import lombok.*;
 @Builder
 public class HabitacionDTO {
     private Long idHabitacion;
-    private Int numeroHabitacion;
+    private int numeroHabitacion;
     private Long idTipoHabitacion;
-    private Int precioDia;
+    private int precioDia;
     private Boolean disponible;
     private Long idHotel;
 }

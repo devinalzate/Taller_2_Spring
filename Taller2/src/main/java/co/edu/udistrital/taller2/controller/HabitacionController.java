@@ -1,8 +1,10 @@
-package co.edu.udistrital.taller2.controllers;
+package co.edu.udistrital.taller2.controller;
 
 import co.edu.udistrital.taller2.dtos.HabitacionDTO;
+import co.edu.udistrital.taller2.entitys.HabitacionEntity;
 import co.edu.udistrital.taller2.models.HabitacionModel;
 import co.edu.udistrital.taller2.services.HabitacionService;
+import co.edu.udistrital.taller2.services.HabitacionServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +14,10 @@ import java.util.List;
 @RequestMapping("/habitaciones")
 @RequiredArgsConstructor
 public class HabitacionController {
-    private final HabitacionService habitacionService;
+    private final HabitacionServiceImpl habitacionService;
 
     @PostMapping
-    public HabitacionDTO create(@RequestBody HabitacionModel model) {
+    public HabitacionEntity create(@RequestBody HabitacionModel model) {
         return habitacionService.save(model);
     }
 

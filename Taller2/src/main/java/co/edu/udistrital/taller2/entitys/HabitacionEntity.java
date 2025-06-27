@@ -17,14 +17,14 @@ public class HabitacionEntity {
     private Long idHabitacion;
 
     @Column(name = "numero_habitacion", nullable = false, unique = true)
-    private Int numeroHabitacion;
+    private int numeroHabitacion;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_tipo_habitacion", nullable = false)
     private TipoHabitacionEntity tipoHabitacion;
 
     @Column(name = "precio_dia", nullable = false)
-    private Int precioDia;
+    private int precioDia;
 
     @Column(name = "disponible")
     private Boolean disponible;

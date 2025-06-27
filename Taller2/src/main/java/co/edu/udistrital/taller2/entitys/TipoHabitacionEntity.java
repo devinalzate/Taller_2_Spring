@@ -24,5 +24,5 @@ public class TipoHabitacionEntity {
     private String nombre;
 
     @Column(name = "cantidad")
-    private Int cantidad;
+    private int cantidad;
 }
