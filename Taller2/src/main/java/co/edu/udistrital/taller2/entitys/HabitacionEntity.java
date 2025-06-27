@@ -13,23 +13,19 @@ public class HabitacionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_habitacion")
-    private Long idHabitacion;
+    private Long id_habitacion;
 
-    @Column(name = "numero_habitacion", nullable = false, unique = true)
     private int numeroHabitacion;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_id_tipo_habitacion", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "fk_id_tipo_habitacion", unique = true)
     private TipoHabitacionEntity tipoHabitacion;
 
-    @Column(name = "precio_dia", nullable = false)
-    private int precioDia;
 
-    @Column(name = "disponible")
+    private int precioDia;
     private Boolean disponible;
 
     @ManyToOne
-    @JoinColumn(name = "fk_id_hotel", nullable = false)
+    @JoinColumn(name = "fk_id_hotel", unique = true)
     private HotelEntity hotel;
 }
