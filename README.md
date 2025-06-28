@@ -27,6 +27,24 @@ public interface BaseService<F, T, E> {
 
 A continuación se describen los métodos REST disponibles, sus rutas, estructuras de entrada y salida, y recomendaciones de uso.
 
+## 📌 Restricciones necesarias para pruebas correctas
+
+Para garantizar la **integridad de datos** y evitar duplicidad de registros asociados en la tabla `usuario`, es **necesario agregar las siguientes restricciones `UNIQUE`**.  
+Estas aseguran que cada `Empleado`, `Cliente`, `Administrador General` y `Administrador` solo puedan estar vinculados a **un único usuario**, cumpliendo la lógica de negocio de relación uno a uno.
+
+```sql
+ALTER TABLE usuario
+ADD CONSTRAINT uk_usuario_empleado UNIQUE (fk_id_empleado);
+
+ALTER TABLE usuario
+ADD CONSTRAINT uk_usuario_cliente UNIQUE (fk_id_cliente);
+
+ALTER TABLE usuario
+ADD CONSTRAINT uk_usuario_admin_general UNIQUE (fk_id_administrador_general);
+
+ALTER TABLE usuario
+ADD CONSTRAINT uk_usuario_admin UNIQUE (fk_id_administrador);
+
 ## User
 
 ### ✅ POST `/api/v1/users/save_user` - Crear nuevo Usuario
