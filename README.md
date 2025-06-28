@@ -44,6 +44,7 @@ ADD CONSTRAINT uk_usuario_admin_general UNIQUE (fk_id_administrador_general);
 
 ALTER TABLE usuario
 ADD CONSTRAINT uk_usuario_admin UNIQUE (fk_id_administrador);
+````
 
 ## User
 
