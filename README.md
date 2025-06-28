@@ -94,7 +94,7 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 
 ---
 
-### ❌ DELETE `/api//api/v1/users/{id}` - Eliminar usuario
+### ❌ DELETE `/api/v1/users/{id}` - Eliminar usuario
 
 - **Descripción:** Elimina un recurso por su ID.
 - **Parámetro:** `id` (Long)
@@ -102,7 +102,7 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 
 ---
 
-### 🔍 GET `/api//api/v1/users/{id}` - Obtener por ID
+### 🔍 GET `/api/v1/users/{id}` - Obtener por ID
 
 - **Descripción:** Devuelve los datos de una entidad específica.
 - **Parámetro:** `id` (Long)
@@ -119,7 +119,7 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 
 ---
 
-### 📋 GET `/api//api//api/v1/users/find_all_users` - Obtener todos los usuarios
+### 📋 GET `/api/v1/users/find_all_users` - Obtener todos los usuarios
 
 - **Descripción:** Lista todos los elementos de la tabla.
 - **Respuesta (lista de DTOs):**
@@ -146,7 +146,7 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 
 ---
 
-### 🔍 GET `/api//api/v1/users/empleado/{id}` - Obtener por ID el empleado
+### 🔍 GET `/api/v1/users/empleado/{id}` - Obtener por ID el empleado
 
 - **Descripción:** Devuelve los datos de el empleado asociado al usuario con {id}.
 - **Parámetro:** `id` (Long)
@@ -165,7 +165,7 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 
 ---
 
-### 🔍 GET `/api//api/v1/users/admin/{id}` - Obtener por ID el admin
+### 🔍 GET `/api/v1/users/admin/{id}` - Obtener por ID el admin
 
 - **Descripción:** Devuelve los datos de el admin asociado al usuario con {id}.
 - **Parámetro:** `id` (Long)
@@ -184,7 +184,7 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 
 ---
 
-### 🔍 GET `/api//api/v1/users/admin_general/{id}` - Obtener por ID el admin general
+### 🔍 GET `/api/v1/users/admin_general/{id}` - Obtener por ID el admin general
 
 - **Descripción:** Devuelve los datos de el admin general asociado al usuario con {id}.
 - **Parámetro:** `id` (Long)
@@ -203,7 +203,7 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
 
 ---
 
-### 🔍 GET `/api//api/v1/users/cliente/{id}` - Obtener por ID el cliente
+### 🔍 GET `/api/v1/users/cliente/{id}` - Obtener por ID el cliente
 
 - **Descripción:** Devuelve los datos de el cliente asociado al usuario con {id}.
 - **Parámetro:** `id` (Long)
@@ -216,6 +216,323 @@ A continuación se describen los métodos REST disponibles, sus rutas, estructur
     "correo" : "telefono",
     "telefono" : "334445511"
 }
+```
+
+## Empleado
+
+### ✅ POST `/api/v1/empleados/save_empleado` - Crear nuevo Empleado
+
+- **Descripción:** Crea una nueva entidad de empleado en la base de datos, pidiendo en esta el modelo asignado a la entidad
+- **Cuerpo de la solicitud (JSON):**
+```json
+{
+    "primer_nombre" : "Devin",
+    "primer_apellido" : "Alzate",
+    "correo" : "telefono",
+    "telofono" : "3204713443"
+}
+```
+- **Respuesta esperada (Entidad :**
+```json
+{
+  "id_empleado": 1,
+    "primer_nombre" : "Devin",
+    "primer_apellido" : "Alzate",
+    "correo" : "telefono",
+    "telofono" : "3204713443"
+}
+```
+
+---
+
+### 📝 PUT `/api/v1/empleados/update_empleado` - Actualizar empleado
+
+- **Descripción:** Modifica los datos de una entidad existente.
+- **Cuerpo de la solicitud (JSON - Modelo T):**
+```json
+{
+    "primer_nombre" : "Devin",
+    "primer_apellido" : "Alzate",
+    "correo" : "telefono",
+    "telofono" : "3204713443"
+}
+```
+- **Respuesta esperada (Entidad F actualizada):**
+```json
+{
+    "id_empledo": 1,
+    "primer_nombre" : "Devin",
+    "primer_apellido" : "Alzate",
+    "correo" : "telefono",
+    "telofono" : "3204713443"
+}
+```
+
+---
+
+### ❌ DELETE `/api/v1/empleados/{id}` - Eliminar enpleado
+
+- **Descripción:** Elimina un recurso por su ID.
+- **Parámetro:** `id` (Long)
+- **Respuesta:** `204 No Content` si se elimina correctamente.
+
+---
+
+### 🔍 GET `/api/v1/empleados/{id}` - Obtener por ID
+
+- **Descripción:** Devuelve los datos de una entidad específica.
+- **Parámetro:** `id` (Long)
+- **Respuesta (DTO - E):**
+```json
+{
+    "id_empleado": 2,
+    "correo": "telefono",
+    "telofono": "3204713443",
+    "primer_nombre": "Devin",
+    "segundo_nombre": null,
+    "primer_apellido": "Alzate",
+    "segundo_apellido": null
+}
+```
+
+---
+
+### 📋 GET `/api/v1/empleados/get_all_empleados` - Obtener todos los empleados
+
+- **Descripción:** Lista todos los elementos de la tabla.
+- **Respuesta (lista de DTOs):**
+```json
+[
+    {
+        "id_empleado": 2,
+        "correo": "telefono",
+        "telofono": "3204713443",
+        "primer_nombre": "Devin",
+        "segundo_nombre": null,
+        "primer_apellido": "Alzate",
+        "segundo_apellido": null
+    }
+]
+```
+
+## Admin
+
+### ✅ POST `/api/v1/admins/save_admin` - Crear nuevo Admin
+
+- **Descripción:** Crea una nueva entidad de administrador en la base de datos, pidiendo en esta el modelo asignado a la entidad
+- **Cuerpo de la solicitud (JSON):**
+```json
+{
+    "primer_nombre" : "Hernesto",
+    "primer_apellido" : "Jaramillo",
+    "correo" : "telefono",
+    "telefono" : "334445511"
+}
+```
+- **Respuesta esperada (Entidad :**
+```json
+{
+    "id_administrador": 3,
+    "correo": "telefono",
+    "telefono": "334445511",
+    "primer_nombre": "Hernesto",
+    "segundo_nombre": null,
+    "primer_apellido": "Jaramillo",
+    "segundo_apellido": null
+}
+```
+
+---
+
+### 📝 PUT `/api/v1/admins/update_admin` - Actualizar admin
+
+- **Descripción:** Modifica los datos de una entidad existente.
+- **Cuerpo de la solicitud (JSON - Modelo T):**
+```json
+{
+    "primer_nombre" : "Hernesto",
+    "primer_apellido" : "Jaramillo",
+    "correo" : "telefono",
+    "telefono" : "334445511"
+}
+```
+- **Respuesta esperada (Entidad F actualizada):**
+```json
+{
+    "id_administrador": 3,
+    "correo": "telefono",
+    "telefono": "334445511",
+    "primer_nombre": "Hernesto",
+    "segundo_nombre": null,
+    "primer_apellido": "Jaramillo",
+    "segundo_apellido": null
+}
+```
+
+---
+
+### ❌ DELETE `/api/v1/admins/{id}` - Eliminar admin
+
+- **Descripción:** Elimina un recurso por su ID.
+- **Parámetro:** `id` (Long)
+- **Respuesta:** `204 No Content` si se elimina correctamente.
+
+---
+
+### 🔍 GET `/api/v1/admins/{id}` - Obtener por ID
+
+- **Descripción:** Devuelve los datos de una entidad específica.
+- **Parámetro:** `id` (Long)
+- **Respuesta (DTO - E):**
+```json
+{
+    "id_administrador": 3,
+    "correo": "telefono",
+    "telefono": "334445511",
+    "primer_nombre": "Hernesto",
+    "segundo_nombre": null,
+    "primer_apellido": "Jaramillo",
+    "segundo_apellido": null
+}
+```
+
+---
+
+### 📋 GET `/api/v1/admins/get_admins` - Obtener todos los administradores
+
+- **Descripción:** Lista todos los elementos de la tabla.
+- **Respuesta (lista de DTOs):**
+```json
+[
+    {
+        "id_administrador": 2,
+        "correo": "telefono",
+        "telefono": "334445511",
+        "primer_nombre": "Hernesto",
+        "segundo_nombre": null,
+        "primer_apellido": "Jaramillo",
+        "segundo_apellido": null
+    },
+    {
+        "id_administrador": 3,
+        "correo": "telefono",
+        "telefono": "334445511",
+        "primer_nombre": "Hernesto",
+        "segundo_nombre": null,
+        "primer_apellido": "Jaramillo",
+        "segundo_apellido": null
+    }
+]
+```
+
+## Admin general
+
+### ✅ POST `/api/v1/admin_general/save_admin_general` - Crear nuevo admin general
+
+- **Descripción:** Crea una nueva entidad de admin general en la base de datos, pidiendo en esta el modelo asignado a la entidad
+- **Cuerpo de la solicitud (JSON):**
+```json
+{
+    "primer_nombre" : "Administrado",
+    "primer_apellido" : "General",
+    "correo" : "telefono",
+    "telefono" : "334445511"
+}
+```
+- **Respuesta esperada (Entidad :**
+```json
+{
+    "id_administrador_general": 2,
+    "correo": "telefono",
+    "telefono": "334445511",
+    "primer_nombre": "Administrado",
+    "segundo_nombre": null,
+    "primer_apellido": "General",
+    "segundo_apellido": null
+}
+```
+
+---
+
+### 📝 PUT `/api/v1/admin_general/update_admin_general` - Actualizar admin general
+
+- **Descripción:** Modifica los datos de una entidad existente.
+- **Cuerpo de la solicitud (JSON - Modelo T):**
+```json
+{
+    "primer_nombre" : "Administrado",
+    "primer_apellido" : "General",
+    "correo" : "telefono",
+    "telefono" : "334445511"
+}
+```
+- **Respuesta esperada (Entidad F actualizada):**
+```json
+{
+    "id_administrador_general": 2,
+    "correo": "telefono",
+    "telefono": "334445511",
+    "primer_nombre": "Administrado",
+    "segundo_nombre": null,
+    "primer_apellido": "General",
+    "segundo_apellido": null
+}
+```
+
+---
+
+### ❌ DELETE `/api//api/v1/admin_general/{id}` - Eliminar admin general
+
+- **Descripción:** Elimina un recurso por su ID.
+- **Parámetro:** `id` (Long)
+- **Respuesta:** `204 No Content` si se elimina correctamente.
+
+---
+
+### 🔍 GET `/api//api/v1/admin_general/{id}` - Obtener por ID
+
+- **Descripción:** Devuelve los datos de una entidad específica.
+- **Parámetro:** `id` (Long)
+- **Respuesta (DTO - E):**
+```json
+{
+    "id_administrador_general": 2,
+    "correo": "telefono",
+    "telefono": "334445511",
+    "primer_nombre": "Administrado",
+    "segundo_nombre": null,
+    "primer_apellido": "General",
+    "segundo_apellido": null
+}
+```
+
+---
+
+### 📋 GET `/api//api//api/v1/admin_general/get_all` - Obtener todos los admins generales
+
+- **Descripción:** Lista todos los elementos de la tabla.
+- **Respuesta (lista de DTOs):**
+```json
+[
+    {
+        "id_administrador_general": 1,
+        "correo": "telefono",
+        "telefono": "334445511",
+        "primer_nombre": "Administrado",
+        "segundo_nombre": null,
+        "primer_apellido": "General",
+        "segundo_apellido": null
+    },
+    {
+        "id_administrador_general": 2,
+        "correo": "telefono",
+        "telefono": "334445511",
+        "primer_nombre": "Administrado",
+        "segundo_nombre": null,
+        "primer_apellido": "General",
+        "segundo_apellido": null
+    }
+]
 ```
 
 
