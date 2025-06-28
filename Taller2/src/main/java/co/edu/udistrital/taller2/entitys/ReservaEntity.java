@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 @Builder
+
+//
 public class ReservaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
